@@ -603,13 +603,14 @@ def create_page8():
                     
     next_btn_page8.grid(row = 3, column = 0, columnspan = 12)
 
-########################################### create first page to  ##############################################
+######################################### query database from quiz selections ########################################
 def query_restaurant():
     # add code to query food
     print("query result from quiz:", all_data_list)
 
+
+
+################ init the first page###############
 create_page1()
-
-
 window.mainloop()
 
