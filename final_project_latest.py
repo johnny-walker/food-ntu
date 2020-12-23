@@ -317,12 +317,14 @@ def create_page4():
     # set up three radiobuttons
     radioValue_page4 = tk.IntVar() 
 
-    rdioOne_page4 = tk.Radiobutton(window, text='內用',
-                                variable=radioValue_page4, value = 1) 
-    rdioTwo_page4 = tk.Radiobutton(window, text='外帶',
-                                variable=radioValue_page4, value = 2) 
+    rdioOne_page4 = tk.Radiobutton( window, text='內用',
+                                    variable=radioValue_page4, value = 1) 
+    rdioTwo_page4 = tk.Radiobutton( window, text='外帶',
+                                    variable=radioValue_page4, value = 2) 
     rdioThree_page4 = tk.Radiobutton(window, text='皆可',
-                                    variable=radioValue_page4, value = 3)
+                                     variable=radioValue_page4, value = 3)
+    radioValue_page4.set(1)
+
 
     rdioOne_page4.grid(column=3, row=3, columnspan =  12, sticky = tk.W + tk.W)
     rdioTwo_page4.grid(column=3, row=5, columnspan =  12, sticky = tk.W + tk.W)
@@ -390,6 +392,7 @@ def create_page5():
                                     variable = radioValue_page5,value = 2) 
     radioThree_page5 = tk.Radiobutton(window, text='無肉不歡(只吃葷)',
                                     variable = radioValue_page5,value = 3)                               
+    radioValue_page5.set(1)
 
     radioOne_page5.grid(column=3, row=3, columnspan = 12, sticky = tk.W + tk.W)
     radioTwo_page5.grid(column=3, row=5, columnspan = 12, sticky = tk.W + tk.W)
@@ -458,12 +461,11 @@ def create_page6():
 
     # set up radiobuttons
     radioValue_page6 = tk.IntVar() 
-    radioValue_page6.set(0)
     radioOne_page6 = tk.Radiobutton(window, text = '好呀',
                                     variable = radioValue_page6, value = 1) 
     radioTwo_page6 = tk.Radiobutton(window, text = '先不要',
                                     variable = radioValue_page6, value = 2) 
-                            
+    radioValue_page6.set(1)                            
 
     radioOne_page6.grid(column = 6, row = 3, columnspan = 12, sticky = tk.W + tk.W)
     radioTwo_page6.grid(column = 6, row = 5, columnspan = 12, sticky = tk.W + tk.W)
@@ -581,9 +583,7 @@ def create_page8():
                     
     label_page8.grid(column=0, row=0, columnspan =  12)
                 
-                    
     # combobox
-
     cv_page8 = tk.StringVar()
     com_budget_page8 = ttk.Combobox(window ,textvariable=cv_page8)
     com_budget_page8.grid(row = 1, column = 0, columnspan = 12)
