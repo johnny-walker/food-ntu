@@ -529,10 +529,10 @@ def create_page7():
     com_time_page7.grid(row = 1, column = 0, columnspan = 12)
     #設置下拉數據
     com_time_page7["value"]=("請選擇人數","外帶","1","2","3","4","5","6","7","8","9","10","10+")
-                    
-
     #設置默認值
     com_time_page7.current(2)
+    
+    # handle selection
     com_time_page7.bind("<<ComboboxSelected>>", handle_people) #等同於textvariable=cv這個變量
 
     next_btn_page7 = tk.Button( window,          # 按鈕所在視窗
@@ -589,10 +589,10 @@ def create_page8():
     com_budget_page8.grid(row = 1, column = 0, columnspan = 12)
     #設置下拉數據
     com_budget_page8["value"]=("請選擇預算", "$100以內", "$101-$200", "$201-$300", "$301-500", "無預算限制")
-                    
-
     #設置默認值
     com_budget_page8.current(1)
+
+    # handle selection
     com_budget_page8.bind("<<ComboboxSelected>>", handle_budget) #等同於textvariable=cv這個變量
 
     next_btn_page8 = tk.Button( window,          # 按鈕所在視窗
@@ -606,10 +606,10 @@ def create_page8():
 ########################################### create first page to  ##############################################
 def query_restaurant():
     # add code to query food
-    print("query result")
+    print("query result from quiz:", all_data_list)
 
 create_page1()
 
-print(all_data_list)
+
 window.mainloop()
 
