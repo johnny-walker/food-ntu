@@ -159,7 +159,7 @@ def create_page1():
                     text = "想在哪兒覓食呢？", 
                     font = ("Arial", 12),  
                     width = 60, height = 2)
-    label_page1.grid(column = 6, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
+    label_page1.grid(column = 3, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
 
     # 列出該題所有選項
     options = tk.StringVar()
@@ -168,7 +168,7 @@ def create_page1():
     # 把所有選項都放在框框中
     lstbox_page1 = tk.Listbox(window, listvariable = options, selectmode = "multiple")
     lstbox_page1.selection_set(0)   # select first one
-    lstbox_page1.grid(column = 6, row = 1, rowspan = 2, columnspan = 12, sticky = tk.NE + tk.SW) 
+    lstbox_page1.grid(column = 3, row = 2, columnspan = 12, sticky = tk.NE + tk.SW) 
     
 
     next_btn_page1 = tk.Button( window,          # 按鈕所在視窗
@@ -176,7 +176,7 @@ def create_page1():
                                 text = '下一題',  # 顯示文字
                                 command = next_button_function_location) # 按下按鈕所執行的函數
                     
-    next_btn_page1.grid(column = 6, row = 5, columnspan = 12, sticky = tk.NE + tk.SW)
+    next_btn_page1.grid(column = 3, row = 12, columnspan = 12, sticky = tk.NE + tk.SW)
 
 
 ################################################## page2 想吃哪一種國家的料理呢 #########################################
@@ -205,7 +205,7 @@ def create_page2():
                             text = "想吃哪一種國家的料理呢？", 
                             font = ("Arial", 12),  
                             width = 60, height = 2)
-    label_page2.grid(column = 6, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
+    label_page2.grid(column = 3, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
 
     # 列出該題所有選項
     options = tk.StringVar()
@@ -214,7 +214,7 @@ def create_page2():
     # 把所有選項都放在框框中
     lstbox_page2 = tk.Listbox(window, listvariable = options, selectmode = "multiple")
     lstbox_page2.selection_set(0)   # select first one
-    lstbox_page2.grid(column = 6, row = 1, rowspan = 2, columnspan = 12, sticky = tk.NE + tk.SW) 
+    lstbox_page2.grid(column = 3, row = 1, rowspan = 2, columnspan = 12, sticky = tk.NE + tk.SW) 
     
 
     next_btn_page2 = tk.Button( window,          # 按鈕所在視窗
@@ -222,7 +222,7 @@ def create_page2():
                                 text = '下一題',  # 顯示文字
                                 command = next_button_function_type) # 按下按鈕所執行的函數
                     
-    next_btn_page2.grid(column = 6, row = 5, columnspan = 12, sticky = tk.NE + tk.SW)
+    next_btn_page2.grid(column = 3, row = 5, columnspan = 12, sticky = tk.NE + tk.SW)
 
 
 ####################################### page3 想吃什麼種類的主食？###############################################
@@ -253,7 +253,7 @@ def create_page3():
                             text = "想吃什麼種類的主食？", 
                             font = ("Arial", 12),  
                             width = 60, height = 2)
-    label_page3.grid(column = 6, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
+    label_page3.grid(column = 3, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
 
     # 列出該題所有選項
     options = tk.StringVar()
@@ -262,7 +262,7 @@ def create_page3():
     # 把所有選項都放在框框中
     lstbox_page3 = tk.Listbox(window, listvariable = options, selectmode = "multiple")#, bg = '#FFC0CB')
     lstbox_page3.selection_set(0)   # select first one
-    lstbox_page3.grid(column = 6, row = 1, rowspan = 2, columnspan = 12, sticky = tk.NE + tk.SW) 
+    lstbox_page3.grid(column = 3, row = 1, rowspan = 2, columnspan = 12, sticky = tk.NE + tk.SW) 
     
 
     next_btn_page3 = tk.Button( window,          # 按鈕所在視窗
@@ -270,7 +270,7 @@ def create_page3():
                                 text = '下一題',  # 顯示文字
                                 command = next_button_function_staple) # 按下按鈕所執行的函數
                     
-    next_btn_page3.grid(column = 6, row = 5, columnspan = 12, sticky = tk.NE + tk.SW)
+    next_btn_page3.grid(column = 3, row = 5, columnspan = 12, sticky = tk.NE + tk.SW)
 
 
 
@@ -311,7 +311,7 @@ def create_page4():
                     text = '內用還是外帶呢?')  # 顯示文字
 
     # place                 
-    label_page4.grid(column=6, row=0, columnspan =  12)
+    label_page4.grid(column=3, row=0, columnspan =  12)
 
 
     # set up three radiobuttons
@@ -324,13 +324,13 @@ def create_page4():
     rdioThree_page4 = tk.Radiobutton(window, text='皆可',
                                     variable=radioValue_page4, value = 3)
 
-    rdioOne_page4.grid(column=6, row=3, columnspan =  12, sticky = tk.W + tk.W)
-    rdioTwo_page4.grid(column=6, row=5, columnspan =  12, sticky = tk.W + tk.W)
-    rdioThree_page4.grid(column=6, row=7, columnspan =  12, sticky = tk.W + tk.W)
+    rdioOne_page4.grid(column=3, row=3, columnspan =  12, sticky = tk.W + tk.W)
+    rdioTwo_page4.grid(column=3, row=5, columnspan =  12, sticky = tk.W + tk.W)
+    rdioThree_page4.grid(column=3, row=7, columnspan =  12, sticky = tk.W + tk.W)
 
     # set a label showing your choice
     #labelValue_page4 = tk.Label(window, textvariable = radioValue_page4)
-    #labelValue_page4.grid(column=6, row=10, columnspan =  12)
+    #labelValue_page4.grid(column=3, row=9, columnspan =  12)
 
     # set a button
     next_btn_page4 = tk.Button( window,          # 按鈕所在視窗
@@ -378,7 +378,7 @@ def create_page5():
                             width = 60, height = 2,
                             text = '吃素食嗎?')  # 顯示文字
                 
-    label_page5.grid(column = 0, row = 0, columnspan = 12)
+    label_page5.grid(column = 3, row = 0, columnspan = 12)
 
 
     # set up radiobuttons
@@ -391,13 +391,13 @@ def create_page5():
     radioThree_page5 = tk.Radiobutton(window, text='無肉不歡(只吃葷)',
                                     variable = radioValue_page5,value = 3)                               
 
-    radioOne_page5.grid(column=6, row=3, columnspan = 12, sticky = tk.W + tk.W)
-    radioTwo_page5.grid(column=6, row=5, columnspan = 12, sticky = tk.W + tk.W)
-    radioThree_page5.grid(column=6, row=7, columnspan = 12, sticky = tk.W + tk.W)
+    radioOne_page5.grid(column=3, row=3, columnspan = 12, sticky = tk.W + tk.W)
+    radioTwo_page5.grid(column=3, row=5, columnspan = 12, sticky = tk.W + tk.W)
+    radioThree_page5.grid(column=3, row=7, columnspan = 12, sticky = tk.W + tk.W)
 
     # set a label showing your choice
     #labelValue_page5 = tk.Label(window, textvariable = radioValue_page5)
-    #labelValue_page5.grid(column=6, row=2, columnspan =  12)
+    #labelValue_page5.grid(column=3, row=9, columnspan =  12)
 
 
     # set a button
@@ -406,7 +406,7 @@ def create_page5():
                                 text = '下一題',  # 顯示文字
                                 command = next_button_function_vegan) # 按下按鈕所執行的函數
                     
-    next_btn_page5.grid(column = 6, row = 10, columnspan = 12)
+    next_btn_page5.grid(column = 3, row = 10, columnspan = 12)
 
 ################################# page6 要不要善用天氣小精靈推薦你適合的食物呢? ########################################### 
 def query_temperature():
@@ -458,7 +458,7 @@ def create_page6():
 
     # set up radiobuttons
     radioValue_page6 = tk.IntVar() 
-
+    radioValue_page6.set(0)
     radioOne_page6 = tk.Radiobutton(window, text = '好呀',
                                     variable = radioValue_page6, value = 1) 
     radioTwo_page6 = tk.Radiobutton(window, text = '先不要',
@@ -530,7 +530,7 @@ def create_page7():
                     
 
     #設置默認值
-    com_time_page7.current(0)
+    com_time_page7.current(2)
     com_time_page7.bind("<<ComboboxSelected>>", handle_people) #等同於textvariable=cv這個變量
 
     next_btn_page7 = tk.Button( window,          # 按鈕所在視窗
@@ -545,7 +545,7 @@ def create_page7():
     
 ################################## page8 本次用餐的預算是多少元? ######################################################
 label_page8 = None
-com_time_page8 = None
+com_budget_page8 = None
 next_btn_page8 = None
 
 # 紀錄所有選過的時間(之後只選最後一筆)
@@ -560,14 +560,14 @@ def create_page8():
         # print(all_data_list)
         # clear current page
         label_page8.destroy()
-        com_time_page8.destroy()
+        com_budget_page8.destroy()
         next_btn_page8.destroy()
         # start to query the result from quizs
         query_restaurant()
 
     #綁定事件
     def handle_budget(event):
-        budget_list.append(com_time_page8.get())
+        budget_list.append(com_budget_page8.get())
         #print(cv.get())
         #print("time")
 
@@ -585,15 +585,15 @@ def create_page8():
     # combobox
 
     cv_page8 = tk.StringVar()
-    com_time_page8 = ttk.Combobox(window ,textvariable=cv_page8)
-    com_time_page8.grid(row = 1, column = 0, columnspan = 12)
+    com_budget_page8 = ttk.Combobox(window ,textvariable=cv_page8)
+    com_budget_page8.grid(row = 1, column = 0, columnspan = 12)
     #設置下拉數據
-    com_time_page8["value"]=("請選擇預算", "$100以內", "$101-$200", "$201-$300", "$301-500", "無預算限制")
+    com_budget_page8["value"]=("請選擇預算", "$100以內", "$101-$200", "$201-$300", "$301-500", "無預算限制")
                     
 
     #設置默認值
-    com_time_page8.current(0)
-    com_time_page8.bind("<<ComboboxSelected>>", handle_budget) #等同於textvariable=cv這個變量
+    com_budget_page8.current(1)
+    com_budget_page8.bind("<<ComboboxSelected>>", handle_budget) #等同於textvariable=cv這個變量
 
     next_btn_page8 = tk.Button( window,          # 按鈕所在視窗
                                 bg = 'light blue',
