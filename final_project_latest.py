@@ -132,10 +132,6 @@ button_page5.grid(row = 3,column = 0, columnspan = 12)
 
 '''
 
-    
-
-
-
 # define pages
 ################################################## page1 想在哪兒覓食呢 ############################################
 label_page1 = None
@@ -161,8 +157,8 @@ def create_page1():
     # question display
     label_page1 = tk.Label(window, 
                     text = "想在哪兒覓食呢？", 
-                    font = ("Arial", 10),  
-                    width = 90, height = 2)
+                    font = ("Arial", 12),  
+                    width = 60, height = 2)
     label_page1.grid(column = 6, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
 
     # 列出該題所有選項
@@ -207,7 +203,7 @@ def create_page2():
     # question display
     label_page2 = tk.Label( window, 
                             text = "想吃哪一種國家的料理呢？", 
-                            font = ("Arial", 10),  
+                            font = ("Arial", 12),  
                             width = 60, height = 2)
     label_page2.grid(column = 6, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
 
@@ -255,7 +251,7 @@ def create_page3():
     # question display
     label_page3 = tk.Label( window, 
                             text = "想吃什麼種類的主食？", 
-                            font = ("Arial", 10),  
+                            font = ("Arial", 12),  
                             width = 60, height = 2)
     label_page3.grid(column = 6, row = 0, columnspan =  12, sticky = tk.NE + tk.SW)
 
@@ -310,7 +306,7 @@ def create_page4():
     # set up a label
     label_page4 = tk.Label(window,                 # 文字標示所在視窗
                     #bg = '#EEBB08',         #  背景顏色
-                    font = ('Arial', 10),   # 字型與大小
+                    font = ('Arial', 12),   # 字型與大小
                     width = 60, height = 2,
                     text = '內用還是外帶呢?')  # 顯示文字
 
@@ -378,7 +374,7 @@ def create_page5():
     # set up a label
     label_page5 = tk.Label( window,                 # 文字標示所在視窗
                             #bg = '#EEBB08',         #  背景顏色
-                            font = ('Arial', 10),   # 字型與大小
+                            font = ('Arial', 12),   # 字型與大小
                             width = 60, height = 2,
                             text = '吃素食嗎?')  # 顯示文字
                 
@@ -454,7 +450,7 @@ def create_page6():
     # set up a label
     label_page6 = tk.Label( window,                 # 文字標示所在視窗
                             #bg = '#EEBB08',         #  背景顏色
-                            font = ('Arial', 10),   # 字型與大小
+                            font = ('Arial', 12),   # 字型與大小
                             width = 60, height = 2,
                             text = '現在溫度是'+ str(temperature) + '度，要不要善用天氣小精靈推薦你適合的食物呢?')  # 顯示文字
                 
@@ -517,7 +513,7 @@ def create_page7():
     # set up a label
     label_page7 = tk.Label( window,            # 文字標示所在視窗
                             #bg = '#EEBB08',         #  背景顏色
-                            font = ('Arial', 10),    # 字型與大小
+                            font = ('Arial', 12),    # 字型與大小
                             width = 60, height = 2,
                             text = '多少人要一起吃呢?')  # 顯示文字
                     
@@ -571,7 +567,7 @@ def create_page8():
 
     #綁定事件
     def handle_budget(event):
-        budget_list.append(com_time_page7.get())
+        budget_list.append(com_time_page8.get())
         #print(cv.get())
         #print("time")
 
@@ -579,7 +575,7 @@ def create_page8():
     # set up a label
     label_page8 = tk.Label( window,            # 文字標示所在視窗
                             #bg = '#EEBB08',         #  背景顏色
-                            font = ('Arial', 10),    # 字型與大小
+                            font = ('Arial', 12),    # 字型與大小
                             width = 60, height = 2,
                             text = '本次用餐的預算是多少元?')  # 顯示文字
                     
