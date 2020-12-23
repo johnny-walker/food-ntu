@@ -1,4 +1,4 @@
-# python final project ( food-ntu)
+# python final project (food-ntu)
 
   final_project_latest : main UI (created by Tkinger)
   
