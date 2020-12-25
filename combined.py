@@ -99,7 +99,7 @@ def create_page_type():
 
     # 列出該題所有選項
     options = tk.StringVar()
-    options.set("中式 西式 台式 泰式 美式 港式 韓式 日式 埃及式 俄式 歐式 義式 印度式 德式 東南亞料理 南洋料理 中東料理 雲南料理")
+    options.set("中式 西式 台式 美式 港式 韓式 日式 東南亞料理 南洋料理 中東料理 雲南料理")
 
     # 把所有選項都放在框框中
     lstbox_page2 = tk.Listbox(window, listvariable = options, selectmode = "multiple")
@@ -147,7 +147,7 @@ def create_page_staple():
 
     # 列出該題所有選項
     options = tk.StringVar()
-    options.set("飯 麵 水餃 河粉 輕食 冬粉 米粉 炸物 壽司 生魚片 牛排 漢堡 鍋物 烤肉 披薩 粄條 胡椒餅 沙拉 三明治")
+    options.set("米食 麵食 鍋物 排餐 輕食 漢堡 烤物 披薩 胡椒餅 沙拉 三明治 派 滷味 餃類 糕點 炸物")
 
     # 把所有選項都放在框框中
     lstbox_page3 = tk.Listbox(window, listvariable = options, selectmode = "multiple")#, bg = '#FFC0CB')
@@ -176,9 +176,9 @@ def create_page_meat():
         if radioValue_page5.get() == 1:
             all_data_list.append('素')
         elif radioValue_page5.get() == 2:
-            all_data_list.append('葷素皆可')
+            all_data_list.append('葷')
         elif radioValue_page5.get() == 3:
-            all_data_list.append('葷')   
+            all_data_list.append('無肉不歡')   
         # clear current page
         radioOne_page5.destroy()
         radioTwo_page5.destroy()
@@ -206,9 +206,9 @@ def create_page_meat():
 
     radioOne_page5 = tk.Radiobutton(window, text='素',
                                     variable = radioValue_page5,value = 1) 
-    radioTwo_page5 = tk.Radiobutton(window, text='葷素皆可',
+    radioTwo_page5 = tk.Radiobutton(window, text='葷',
                                     variable = radioValue_page5,value = 2) 
-    radioThree_page5 = tk.Radiobutton(window, text='無肉不歡(只吃葷)',
+    radioThree_page5 = tk.Radiobutton(window, text='無肉不歡, 葷素皆可',
                                     variable = radioValue_page5,value = 3)                               
     radioValue_page5.set(1)
 
@@ -321,7 +321,7 @@ def create_page_here_go():
         elif radioValue_page4.get() == 2:
             all_data_list.append('外帶')
         elif radioValue_page4.get() == 3:
-            all_data_list.append('內用外帶皆可')       
+            all_data_list.append('都可以')       
         # clear current page
         label_page4.destroy()
         rdioOne_page4.destroy()
@@ -352,7 +352,7 @@ def create_page_here_go():
                                     variable=radioValue_page4, value = 1) 
     rdioTwo_page4 = tk.Radiobutton( window, text='外帶',
                                     variable=radioValue_page4, value = 2) 
-    rdioThree_page4 = tk.Radiobutton(window, text='皆可',
+    rdioThree_page4 = tk.Radiobutton(window, text='都可以',
                                      variable=radioValue_page4, value = 3)
     radioValue_page4.set(1)
 
@@ -418,7 +418,7 @@ def create_page_people():
     com_time_page7 = ttk.Combobox(window ,textvariable=cv_page7)
     com_time_page7.grid(row = 1, column = 0, columnspan = 12)
     #設置下拉數據
-    com_time_page7["value"]=("請選擇人數","外帶","1","2","3","4","5","6","7","8","9","10","10+")
+    com_time_page7["value"]=("請選擇人數","0","1","2","3","4","5","6","7","8","9","10","10+")
     #設置默認值
     com_time_page7.current(2)
     
@@ -478,7 +478,7 @@ def create_page_budget():
     com_budget_page8 = ttk.Combobox(window ,textvariable=cv_page8)
     com_budget_page8.grid(row = 1, column = 0, columnspan = 12)
     #設置下拉數據
-    com_budget_page8["value"]=("請選擇預算", "$100以內", "$101-$200", "$201-$300", "$301-500", "無預算限制")
+    com_budget_page8["value"]=("請選擇預算", "$", "$$", "$$$", "$$$$", "$$$$$", "無預算限制")
     #設置默認值
     com_budget_page8.current(1)
 
@@ -509,19 +509,19 @@ def print_result(result, number):
     print(f"---------------------------------------------------------")
 
 def string_result(result, number):
-    output = ""
+    results = []
+
     for i in range(min(len(result),number)):
         target = result.loc[i]
-        output += "---------------------------------------------------------\n"
-        output += f"推薦您的第 {i+1} 家餐廳資訊如下：\n"
+        output  = f"推薦您的第 {i+1} 家餐廳資訊如下：\n"
         output += f"餐廳：{target[0]}\n"
         output += f"地址：{target[2]}\n"
         output += f"價位：{target[3]}\n"
         output += f"營業時間：{target[11]}\n"
         if all_data_list[4] != "N/A":
             output += f"天氣：{target[13]}\n"
-    output += "---------------------------------------------------------\n"
-    return output
+        results.append(output)
+    return results
 
 # get result
 def get_result(all_data_list, number = 5):
@@ -573,11 +573,39 @@ def get_result(all_data_list, number = 5):
 
     if len(df_select) != 0:
         result = random_pick(df_select, number=5)
-        print_result(result, number)
+        create_result_page(string_result(result, number))
         return string_result(result, number)
     else:
         print("沒找到>_< 再試一次吧QQ")
         return "沒找到>_< 再試一次吧QQ"
+
+################# page_results ##################
+def create_item(no, data):
+
+    data_height = 6
+    var = tk.StringVar()
+    ans_label = tk.Label(window,            # 文字標示所在視窗
+                    #bg = '#EEBB08',         #  背景顏色
+                    font = ('Arial', 12),    # 字型與大小
+                    width = 60, 
+                    height = data_height,
+                    textvariable = var)  # 顯示文字
+
+    var.set(data)
+    ans_label.grid(column=0, row = no * (data_height+3) + 10, columnspan = 12)
+
+def create_result_page(results):
+    # show title  "推薦結果如下："
+    ans_label = tk.Label(window,            # 文字標示所在視窗
+                #bg = '#EEBB08',            #  背景顏色
+                font = ('Arial', 12),       # 字型與大小
+                width = 60, height = 2,
+                text = "推薦結果如下：")      # 顯示文字
+    ans_label.grid(column=0, row=0, columnspan =  12)
+
+    # show restaurants"
+    for i in range(0,len(results)-1): 
+        create_item(i, results[i])
 
 
 ################ init the first page###############
