@@ -13,7 +13,7 @@ window = tk.Tk()
 window.title('吃什麼小幫手')
 
 # 設定視窗大小為 640x480，視窗（左上角）在螢幕上的座標位置為 (250, 150)
-window.geometry("400x600+250+150")
+window.geometry("420x640+250+150")
 
 # background color
 window.configure(background='white')
@@ -286,8 +286,8 @@ def create_page_weather():
                                     variable = radioValue_page6, value = 2) 
     radioValue_page6.set(1)                            
 
-    radioOne_page6.grid(column = 6, row = 3, columnspan = 12, sticky = tk.W + tk.W)
-    radioTwo_page6.grid(column = 6, row = 5, columnspan = 12, sticky = tk.W + tk.W)
+    radioOne_page6.grid(column = 0, row = 3, columnspan = 12, sticky = tk.W + tk.W)
+    radioTwo_page6.grid(column = 0, row = 5, columnspan = 12, sticky = tk.W + tk.W)
 
 
     # set a label showing your choice
@@ -301,7 +301,7 @@ def create_page_weather():
                                 text = '下一題',  # 顯示文字
                                 command = next_button_function_temp) # 按下按鈕所執行的函數
                     
-    next_btn_page6.grid(column = 6, row = 10, columnspan = 12)
+    next_btn_page6.grid(column = 0, row = 10, columnspan = 12)
 
 
 
@@ -581,30 +581,31 @@ def get_result(all_data_list, number = 5):
 
 ################# page_results ##################
 def create_item(no, data):
-
-    data_height = 6
+    color = '#70B000' if (no%2 == 0) else '#6EBB08'
+    data_height = 10
     var = tk.StringVar()
-    ans_label = tk.Label(window,            # 文字標示所在視窗
-                    #bg = '#EEBB08',         #  背景顏色
-                    font = ('Arial', 12),    # 字型與大小
-                    width = 60, 
-                    height = data_height,
-                    textvariable = var)  # 顯示文字
+    ans_label = tk.Label(window,                    # 文字標示所在視窗
+                         bg = color,                #  背景顏色
+                         font = ('Arial', 12),      # 字型與大小
+                         width = 60, 
+                         height = data_height-2,
+                         textvariable = var)        # 顯示文字
 
     var.set(data)
-    ans_label.grid(column=0, row = no * (data_height+3) + 10, columnspan = 12)
+    ans_label.grid(column=0, row = no * (data_height) + 5, columnspan = 12)
 
 def create_result_page(results):
     # show title  "推薦結果如下："
-    ans_label = tk.Label(window,            # 文字標示所在視窗
-                bg = '#EEBB08',            #  背景顏色
-                font = ('Arial', 12),       # 字型與大小
-                width = 60, height = 2,
-                text = "推薦結果如下：")      # 顯示文字
+    ans_label = tk.Label(window,                    # 文字標示所在視窗
+                         bg = '#AEFB28',            #  背景顏色
+                         font = ('Arial', 12),      # 字型與大小
+                         width = 60, height = 2,
+                         text = "推薦結果如下：")      # 顯示文字
     ans_label.grid(column=0, row=0, columnspan =  12)
 
+
     # show restaurants"
-    for i in range(0,len(results)-1): 
+    for i in range(0, len(results)): 
         create_item(i, results[i])
 
 
