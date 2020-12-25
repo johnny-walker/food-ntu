@@ -3,6 +3,8 @@ import tkinter as tk
 from tkinter import ttk
 import tkinter.font as tkFont
 import requests, json 
+from selection_method import *
+from project_main import *
 
 # 建立主視窗 Frame
 window = tk.Tk()
@@ -11,7 +13,7 @@ window = tk.Tk()
 window.title('吃什麼小幫手')
 
 # 設定視窗大小為 640x480，視窗（左上角）在螢幕上的座標位置為 (250, 150)
-window.geometry("640x480+250+150")
+window.geometry("400x600+250+150")
 
 # background color
 window.configure(background='white')
@@ -19,126 +21,14 @@ window.configure(background='white')
 
 all_data_list = []  # a list collecting all data needed
     
-#############################################################################################################
-  
-'''
-######################################## page4 ##############################################################
-
-
-def delete_all_page4():
-    label_page4.destroy()
-    com_time_page4.destroy()
-    button_page4.destroy()
-    if len(time_list) ==0:
-        all_data_list.append('無資料')
-    else:
-        all_data_list.append(time_list[-1])
-
-#綁定事件
-def handle_time(event):
-    time_list.append(com_time_page4.get())
-    #print(cv.get())
-    #print("time")
-
-# 紀錄所有選過的時間(之後只選最後一筆)
-time_list = []
-
-# set up a label
-label_page4 = tk.Label(window,            # 文字標示所在視窗
-                 #bg = '#EEBB08',         #  背景顏色
-                 font = ('Arial', 10),    # 字型與大小
-                 width = 60, height = 2,
-                 text = '預計的用餐時間是幾點呢?')  # 顯示文字
-                 
-label_page4.grid(column=0, row=0, columnspan =  12)
-              
-                 
-# combobox
-
-cv_page4 = tk.StringVar()
-com_time_page4 = ttk.Combobox(window ,textvariable=cv_page4)
-com_time_page4.grid(row = 1, column = 0, columnspan = 12)
-#設置下拉數據
-com_time_page4["value"]=("請選擇時間","11:00-11:30","11:30-12:00","12:00-12:30","12:30-13:00","13:00-13:30",
-                   "13:30-14:00","14:00-15:00","15:00-16:00","16:00-17:00",
-                   "17:00-17:30","17:30-18:00","18:00-18:30","18:30-19:00",
-                   "19:00-19:30","19:30-20:00","20:00-20:30","20:30-21:00")
-
-#設置默認值
-com_time_page4.current(0)
-   
-com_time_page4.bind("<<ComboboxSelected>>", handle_time) #等同於textvariable=cv這個變量
-
-button_page4 = tk.Button(window,          # 按鈕所在視窗
-                         bg = 'light blue',
-                         text = '下一題',  # 顯示文字
-                         command = delete_all_page4
-                         ) # 按下按鈕所執行的函數
-                   
-button_page4.grid(row = 3,column = 0, columnspan = 12)
-
-
-############################################ page5 #######################################################
-
-def next_button_function_weekend():
-    label_page5.destroy()
-    com_time_page5.destroy()
-    button_page5.destroy()
-    if len(week_list) ==0:
-        all_data_list.append('無資料')
-    else:
-        all_data_list.append(week_list[-1])
-
-#綁定事件
-def handle_week(event):
-    week_list.append(com_time_page5.get())
-    #print(cv.get())
-    #print("time")
-
-# 紀錄所有選過的時間(之後只選最後一筆)
-week_list = []
-
-# set up a label
-label_page5 = tk.Label(window,            # 文字標示所在視窗
-                 #bg = '#EEBB08',         #  背景顏色
-                 font = ('Arial', 10),    # 字型與大小
-                 width = 60, height = 2,
-                 text = '要在星期幾用餐呢?')  # 顯示文字
-                 
-label_page5.grid(column=0, row=0, columnspan =  12)
-              
-                 
-# combobox
-
-cv2 = tk.StringVar()
-com_time_page5 = ttk.Combobox(window ,textvariable=cv2)
-com_time_page5.grid(row = 1, column = 0, columnspan = 12)
-#設置下拉數據
-com_time_page5["value"]=("請選擇星期","星期一","星期二","星期三","星期四","星期五","星期六","星期日")
-
-#設置默認值
-com_time_page5.current(0)
-
-    
-com_time_page5.bind("<<ComboboxSelected>>", handle_week) #等同於textvariable=cv這個變量
-
-button_page5 = tk.Button(window,          # 按鈕所在視窗
-                         bg = 'light blue',
-                         text = '下一題',  # 顯示文字
-                         command = next_button_function_weekend
-                         ) # 按下按鈕所執行的函數
-                   
-button_page5.grid(row = 3,column = 0, columnspan = 12)
-
-'''
 
 # define pages
-################################################## page1 想在哪兒覓食呢 ############################################
+################################################## page_place 想在哪兒覓食呢 ############################################
 label_page1 = None
 lstbox_page1 = None
 next_btn_page1 = None
 
-def create_page1():
+def create_page_place():
     def next_button_function_location():
         location_list = list()
         selection = lstbox_page1.curselection()
@@ -152,7 +42,7 @@ def create_page1():
         lstbox_page1.destroy()
         next_btn_page1.destroy()
         # create next page
-        create_page2()
+        create_page_type()
     
     # question display
     label_page1 = tk.Label(window, 
@@ -179,12 +69,12 @@ def create_page1():
     next_btn_page1.grid(column = 3, row = 12, columnspan = 12, sticky = tk.NE + tk.SW)
 
 
-################################################## page2 想吃哪一種國家的料理呢 #########################################
+################################################## page_type 想吃哪一種國家的料理呢 #########################################
 label_page2 = None
 lstbox_page2  = None
 next_btn_page2  = None
   
-def create_page2():  
+def create_page_type():  
     def next_button_function_type():
         type_list = list()
         selection = lstbox_page2.curselection()
@@ -198,7 +88,7 @@ def create_page2():
         lstbox_page2.destroy()
         next_btn_page2.destroy()
         # create next page
-        create_page3()
+        create_page_staple()
     
     # question display
     label_page2 = tk.Label( window, 
@@ -225,13 +115,13 @@ def create_page2():
     next_btn_page2.grid(column = 3, row = 5, columnspan = 12, sticky = tk.NE + tk.SW)
 
 
-####################################### page3 想吃什麼種類的主食？###############################################
+####################################### page_staple 想吃什麼種類的主食？###############################################
 
 label_page3 = None
 lstbox_page3 = None
 next_btn_page3 = None
 
-def create_page3():
+def create_page_staple():
     def next_button_function_staple():
         staple_list = list()
         selection = lstbox_page3.curselection()
@@ -245,7 +135,7 @@ def create_page3():
         lstbox_page3.destroy()
         next_btn_page3.destroy()
         # create next page
-        create_page4()
+        create_page_meat()
     
     
     # question display
@@ -272,9 +162,150 @@ def create_page3():
                     
     next_btn_page3.grid(column = 3, row = 5, columnspan = 12, sticky = tk.NE + tk.SW)
 
+############################################ page_meat 吃素食嗎? ################################################# 
+label_page5 = None
+radioValue_page5 = None
+radioOne_page5 = None
+radioTwo_page5 = None
+radioThree_page5 = None
+#labelValue_page5 = None
+next_btn_page5 = None
+
+def create_page_meat():     
+    def next_button_function_vegan():
+        if radioValue_page5.get() == 1:
+            all_data_list.append('素')
+        elif radioValue_page5.get() == 2:
+            all_data_list.append('葷素皆可')
+        elif radioValue_page5.get() == 3:
+            all_data_list.append('葷')   
+        # clear current page
+        radioOne_page5.destroy()
+        radioTwo_page5.destroy()
+        radioThree_page5.destroy()    
+        label_page5.destroy()
+        #labelValue_page5.destroy()
+        next_btn_page5.destroy()
+        # create next page
+        create_page_weather()
+
+    #vege_list = []
+
+    # set up a label
+    label_page5 = tk.Label( window,                 # 文字標示所在視窗
+                            #bg = '#EEBB08',         #  背景顏色
+                            font = ('Arial', 12),   # 字型與大小
+                            width = 60, height = 2,
+                            text = '吃素食嗎?')  # 顯示文字
+                
+    label_page5.grid(column = 3, row = 0, columnspan = 12)
 
 
-################################################## page4 內用還是外帶呢? #######################################
+    # set up radiobuttons
+    radioValue_page5 = tk.IntVar() 
+
+    radioOne_page5 = tk.Radiobutton(window, text='素',
+                                    variable = radioValue_page5,value = 1) 
+    radioTwo_page5 = tk.Radiobutton(window, text='葷素皆可',
+                                    variable = radioValue_page5,value = 2) 
+    radioThree_page5 = tk.Radiobutton(window, text='無肉不歡(只吃葷)',
+                                    variable = radioValue_page5,value = 3)                               
+    radioValue_page5.set(1)
+
+    radioOne_page5.grid(column=3, row=3, columnspan = 12, sticky = tk.W + tk.W)
+    radioTwo_page5.grid(column=3, row=5, columnspan = 12, sticky = tk.W + tk.W)
+    radioThree_page5.grid(column=3, row=7, columnspan = 12, sticky = tk.W + tk.W)
+
+    # set a label showing your choice
+    #labelValue_page5 = tk.Label(window, textvariable = radioValue_page5)
+    #labelValue_page5.grid(column=3, row=9, columnspan =  12)
+
+
+    # set a button
+    next_btn_page5 = tk.Button( window,          # 按鈕所在視窗
+                                bg = 'light blue',
+                                text = '下一題',  # 顯示文字
+                                command = next_button_function_vegan) # 按下按鈕所執行的函數
+                    
+    next_btn_page5.grid(column = 3, row = 10, columnspan = 12)
+
+
+################################# page_weather 要不要善用天氣小精靈推薦你適合的食物呢? ##################################### 
+def query_temperature():
+    api_key = "499fe73dfae42a6cbc10dbcccb010983"
+    base_url = "http://api.openweathermap.org/data/2.5/weather?"
+    city_name = "Taipei" #input("Enter city name : ") 
+    complete_url = base_url + "appid=" + api_key + "&q=" + city_name 
+    response = requests.get(complete_url) 
+    x = response.json() 
+    if x["cod"] != "404": 
+        y = x["main"] 
+        current_temperature = y["temp"] 
+        return int(current_temperature - 273.15)
+    else:
+        return 20
+
+label_page6 = None
+radioValue_page6 = None
+radioOne_page6 = None
+radioTwo_page6 = None
+#labelValue_page6 = None
+next_btn_page6 = None
+temperature = query_temperature()
+
+def create_page_weather():
+    def next_button_function_temp():
+        if radioValue_page6.get() == 1:
+            all_data_list.append(temperature)
+        elif radioValue_page6.get() == 2:
+            all_data_list.append('N/A')
+        # clear current page 
+        radioOne_page6.destroy()
+        radioTwo_page6.destroy()   
+        label_page6.destroy()
+        #labelValue_page6.destroy()
+        next_btn_page6.destroy()
+        # create next page
+        create_page_here_go()
+
+
+    # set up a label
+    label_page6 = tk.Label( window,                 # 文字標示所在視窗
+                            #bg = '#EEBB08',         #  背景顏色
+                            font = ('Arial', 12),   # 字型與大小
+                            width = 60, height = 2,
+                            text = '現在溫度是'+ str(temperature) + '度，要不要善用天氣小精靈推薦你適合的食物呢?')  # 顯示文字
+                
+    label_page6.grid(column = 0, row = 0, columnspan = 12)
+
+    # set up radiobuttons
+    radioValue_page6 = tk.IntVar() 
+    radioOne_page6 = tk.Radiobutton(window, text = '好呀',
+                                    variable = radioValue_page6, value = 1) 
+    radioTwo_page6 = tk.Radiobutton(window, text = '先不要',
+                                    variable = radioValue_page6, value = 2) 
+    radioValue_page6.set(1)                            
+
+    radioOne_page6.grid(column = 6, row = 3, columnspan = 12, sticky = tk.W + tk.W)
+    radioTwo_page6.grid(column = 6, row = 5, columnspan = 12, sticky = tk.W + tk.W)
+
+
+    # set a label showing your choice
+    #labelValue_page6 = tk.Label(window, textvariable = radioValue_page6)
+    #labelValue_page6.grid(column=6, row=8, columnspan =  12)
+
+
+    # set a button
+    next_btn_page6 = tk.Button( window,          # 按鈕所在視窗
+                                bg = 'light blue',
+                                text = '下一題',  # 顯示文字
+                                command = next_button_function_temp) # 按下按鈕所執行的函數
+                    
+    next_btn_page6.grid(column = 6, row = 10, columnspan = 12)
+
+
+
+################################################ page_here_go 內用還是外帶呢? #######################################
 label_page4 = None
 radioValue_page4 = None
 rdioOne_page4 = None 
@@ -283,7 +314,7 @@ rdioThree_page4 = None
 #labelValue_page4 = None
 next_btn_page4 = None
 
-def create_page4():
+def create_page_here_go():
     def next_button_function_eatin():
         if radioValue_page4.get() == 1:
             all_data_list.append('內用')
@@ -300,7 +331,7 @@ def create_page4():
         #labelValue_page4.destroy()
         next_btn_page4.destroy()
         # create next page
-        create_page5()
+        create_page_people()
     
 
     # set up a label
@@ -344,148 +375,7 @@ def create_page4():
     next_btn_page4.grid(column = 6, row=10, columnspan = 12)
 
 
-############################################ page5 吃素食嗎? ################################################# 
-label_page5 = None
-radioValue_page5 = None
-radioOne_page5 = None
-radioTwo_page5 = None
-radioThree_page5 = None
-#labelValue_page5 = None
-next_btn_page5 = None
-
-def create_page5():     
-    def next_button_function_vegan():
-        if radioValue_page5.get() == 1:
-            all_data_list.append('素')
-        elif radioValue_page5.get() == 2:
-            all_data_list.append('葷素皆可')
-        elif radioValue_page5.get() == 3:
-            all_data_list.append('葷')   
-        # clear current page
-        radioOne_page5.destroy()
-        radioTwo_page5.destroy()
-        radioThree_page5.destroy()    
-        label_page5.destroy()
-        #labelValue_page5.destroy()
-        next_btn_page5.destroy()
-        # create next page
-        create_page6()
-
-    #vege_list = []
-
-    # set up a label
-    label_page5 = tk.Label( window,                 # 文字標示所在視窗
-                            #bg = '#EEBB08',         #  背景顏色
-                            font = ('Arial', 12),   # 字型與大小
-                            width = 60, height = 2,
-                            text = '吃素食嗎?')  # 顯示文字
-                
-    label_page5.grid(column = 3, row = 0, columnspan = 12)
-
-
-    # set up radiobuttons
-    radioValue_page5 = tk.IntVar() 
-
-    radioOne_page5 = tk.Radiobutton(window, text='素',
-                                    variable = radioValue_page5,value = 1) 
-    radioTwo_page5 = tk.Radiobutton(window, text='葷素皆可',
-                                    variable = radioValue_page5,value = 2) 
-    radioThree_page5 = tk.Radiobutton(window, text='無肉不歡(只吃葷)',
-                                    variable = radioValue_page5,value = 3)                               
-    radioValue_page5.set(1)
-
-    radioOne_page5.grid(column=3, row=3, columnspan = 12, sticky = tk.W + tk.W)
-    radioTwo_page5.grid(column=3, row=5, columnspan = 12, sticky = tk.W + tk.W)
-    radioThree_page5.grid(column=3, row=7, columnspan = 12, sticky = tk.W + tk.W)
-
-    # set a label showing your choice
-    #labelValue_page5 = tk.Label(window, textvariable = radioValue_page5)
-    #labelValue_page5.grid(column=3, row=9, columnspan =  12)
-
-
-    # set a button
-    next_btn_page5 = tk.Button( window,          # 按鈕所在視窗
-                                bg = 'light blue',
-                                text = '下一題',  # 顯示文字
-                                command = next_button_function_vegan) # 按下按鈕所執行的函數
-                    
-    next_btn_page5.grid(column = 3, row = 10, columnspan = 12)
-
-################################# page6 要不要善用天氣小精靈推薦你適合的食物呢? ########################################### 
-def query_temperature():
-    api_key = "499fe73dfae42a6cbc10dbcccb010983"
-    base_url = "http://api.openweathermap.org/data/2.5/weather?"
-    city_name = "Taipei" #input("Enter city name : ") 
-    complete_url = base_url + "appid=" + api_key + "&q=" + city_name 
-    response = requests.get(complete_url) 
-    x = response.json() 
-    if x["cod"] != "404": 
-        y = x["main"] 
-        current_temperature = y["temp"] 
-        return int(current_temperature - 273.15)
-    else:
-        return 20
-
-label_page6 = None
-radioValue_page6 = None
-radioOne_page6 = None
-radioTwo_page6 = None
-#labelValue_page6 = None
-next_btn_page6 = None
-temperature = query_temperature()
-
-def create_page6():
-    def next_button_function_temp():
-        if radioValue_page6.get() == 1:
-            all_data_list.append(temperature)
-        elif radioValue_page6.get() == 2:
-            all_data_list.append('N/A')
-        # clear current page 
-        radioOne_page6.destroy()
-        radioTwo_page6.destroy()   
-        label_page6.destroy()
-        #labelValue_page6.destroy()
-        next_btn_page6.destroy()
-        # create next page
-        create_page7()
-
-
-    # set up a label
-    label_page6 = tk.Label( window,                 # 文字標示所在視窗
-                            #bg = '#EEBB08',         #  背景顏色
-                            font = ('Arial', 12),   # 字型與大小
-                            width = 60, height = 2,
-                            text = '現在溫度是'+ str(temperature) + '度，要不要善用天氣小精靈推薦你適合的食物呢?')  # 顯示文字
-                
-    label_page6.grid(column = 0, row = 0, columnspan = 12)
-
-    # set up radiobuttons
-    radioValue_page6 = tk.IntVar() 
-    radioOne_page6 = tk.Radiobutton(window, text = '好呀',
-                                    variable = radioValue_page6, value = 1) 
-    radioTwo_page6 = tk.Radiobutton(window, text = '先不要',
-                                    variable = radioValue_page6, value = 2) 
-    radioValue_page6.set(1)                            
-
-    radioOne_page6.grid(column = 6, row = 3, columnspan = 12, sticky = tk.W + tk.W)
-    radioTwo_page6.grid(column = 6, row = 5, columnspan = 12, sticky = tk.W + tk.W)
-
-
-    # set a label showing your choice
-    #labelValue_page6 = tk.Label(window, textvariable = radioValue_page6)
-    #labelValue_page6.grid(column=6, row=8, columnspan =  12)
-
-
-    # set a button
-    next_btn_page6 = tk.Button( window,          # 按鈕所在視窗
-                                bg = 'light blue',
-                                text = '下一題',  # 顯示文字
-                                command = next_button_function_temp) # 按下按鈕所執行的函數
-                    
-    next_btn_page6.grid(column = 6, row = 10, columnspan = 12)
-
-
-####################################### page7 多少人要一起吃呢? #######################################################
+####################################### page_people 多少人要一起吃呢? #######################################################
 label_page7 = None
 com_time_page7 = None
 next_btn_page7 = None
@@ -493,7 +383,7 @@ next_btn_page7 = None
 # 紀錄所有選過的時間(之後只選最後一筆)
 people_list = []
 
-def create_page7():
+def create_page_people():
     def next_button_function_people():
         if len(people_list) ==0:
             all_data_list.append('無資料')
@@ -504,7 +394,7 @@ def create_page7():
         com_time_page7.destroy()
         next_btn_page7.destroy()
         # create next page
-        create_page8()
+        create_page_budget()
 
     #綁定事件
     def handle_people(event):
@@ -545,7 +435,7 @@ def create_page7():
 
   
     
-################################## page8 本次用餐的預算是多少元? ######################################################
+################################## page_budget 本次用餐的預算是多少元? ######################################################
 label_page8 = None
 com_budget_page8 = None
 next_btn_page8 = None
@@ -553,7 +443,7 @@ next_btn_page8 = None
 # 紀錄所有選過的時間(之後只選最後一筆)
 budget_list = []
 
-def create_page8():
+def create_page_budget():
     def next_button_function_budget():
         if len(budget_list) == 0:
             all_data_list.append('無預算限制')
@@ -565,7 +455,7 @@ def create_page8():
         com_budget_page8.destroy()
         next_btn_page8.destroy()
         # start to query the result from quizs
-        query_restaurant()
+        get_result(all_data_list)
 
     #綁定事件
     def handle_budget(event):
@@ -604,13 +494,94 @@ def create_page8():
     next_btn_page8.grid(row = 3, column = 0, columnspan = 12)
 
 ######################################### query database from quiz selections ########################################
-def query_restaurant():
-    # add code to query food
+# print the result
+def print_result(result, number):
+    for i in range(min(len(result),number)):
+        target = result.loc[i]
+        print(f"---------------------------------------------------------")
+        print(f"推薦您的第 {i+1} 家餐廳資訊如下：")
+        print(f"餐廳：{target[0]}")
+        print(f"地址：{target[2]}")
+        print(f"價位：{target[3]}")
+        print(f"營業時間：{target[11]}")
+        if all_data_list[4] != "N/A":
+            print(f"天氣：{target[13]}")
+    print(f"---------------------------------------------------------")
+
+def string_result(result, number):
+    output = ""
+    for i in range(min(len(result),number)):
+        target = result.loc[i]
+        output += "---------------------------------------------------------\n"
+        output += f"推薦您的第 {i+1} 家餐廳資訊如下：\n"
+        output += f"餐廳：{target[0]}\n"
+        output += f"地址：{target[2]}\n"
+        output += f"價位：{target[3]}\n"
+        output += f"營業時間：{target[11]}\n"
+        if all_data_list[4] != "N/A":
+            output += f"天氣：{target[13]}\n"
+    output += "---------------------------------------------------------\n"
+    return output
+
+# get result
+def get_result(all_data_list, number = 5):
     print("query result from quiz:", all_data_list)
 
+    df = load_data()
+    time_range = ["一", 1200]
+    place_range = all_data_list[0]
+    type_range = all_data_list[1]
+    staple_range = all_data_list[2]
+    meat_range = all_data_list[3]
+    weather_range = all_data_list[4]
+    here_go_range = all_data_list[5]
+    people_range = int(all_data_list[6])
+    money_range = all_data_list[-1]
+
+    # select
+    df_select = df.copy()
+    if len(df_select) != 0:
+        print(time_range, len(df_select))
+        df_select = time_selection(df_select, time_range)
+    if len(df_select) != 0:
+        print(place_range, len(df_select))
+        df_select = place_selection(df_select, place_range)
+    if len(df_select) != 0:
+        print(type_range, len(df_select))
+        df_select = type_selection(df_select, type_range)
+    if len(df_select) != 0:
+        print(staple_range, len(df_select))
+        df_select = staple_selection(df_select, staple_range)
+    if len(df_select) != 0:
+        print(here_go_range, len(df_select))
+        df_select = here_go_selection(df_select, here_go_range)
+    if len(df_select) != 0:
+        if here_go_range != "外帶":
+            print(people_range, len(df_select))
+            df_select = people_selection(df_select, people_range)
+    if len(df_select) != 0:
+        print(meat_range, len(df_select))
+        df_select = meat_selection(df_select, meat_range)
+    if len(df_select)!= 0 and (all_data_list[4] != "N/A"):
+        print(weather_range, len(df_select))
+        print(123)
+        df_select = weather_selection(df_select, weather_range)
+        print(len(df_select))
+    # if len(df_select) != 0:
+    df_select = money_selection(df_select, money_range)
+    print("count:", len(df_select))
+
+    if len(df_select) != 0:
+        result = random_pick(df_select, number=5)
+        print_result(result, number)
+        return string_result(result, number)
+    else:
+        print("沒找到>_< 再試一次吧QQ")
+        return "沒找到>_< 再試一次吧QQ"
 
 
 ################ init the first page###############
-create_page1()
+create_page_place()
+
 window.mainloop()
 

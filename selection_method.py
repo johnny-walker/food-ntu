@@ -1,3 +1,13 @@
+import pandas as pd
+'''
+def load_data():
+    path = os.path.join(os.path.dirname(__file__),"database_new.csv")
+    df = pd.read_csv(path, header=None, encoding="utf-8")
+    # 去除標題
+    df = df[1:]
+    return df
+'''
+
 def money_selection(df, money_range):
     money_list = df[4].tolist()
     money_list = [money_list[i].split(" ") for i in range(len(money_list))]
@@ -49,9 +59,11 @@ def here_go_selection(df, here_go_range):
         here_go_range = ["無"]
     elif here_go_range == "都可以":
         here_go_range = ["有", "無"]
+    else:
+        here_go_range = ["有", "無"]
     here_go_list = df[9].tolist()
     here_go_bool = [False for i in range(len(here_go_list))]
-    for i in range(3,len(here_go_list)):
+    for i in range(len(here_go_list)):
         if here_go_list[i] in here_go_range:
             here_go_bool[i] = True
     return df[here_go_bool]
@@ -63,7 +75,7 @@ def people_selection(df, people_range):
     for i in range(1, len(people_list)):
         if people_list[i] == "50+":
             people_list[i] = 10000
-        else:
+        elif type(people_list[i]) == str:
             people_list[i] = int(people_list[i])
         if people_list[i] >= people_range:
             people_bool[i] = True
@@ -84,6 +96,24 @@ def meat_selection(df, meat_range):
             if meat == meat_list[i]:
                 meat_bool[i] = True
     return df[meat_bool]
+
+# 天氣小精靈
+call_weather = False
+def weather_selection(df, weather_range):
+    call_weather = True
+    if weather_range >= 20:
+        weather_range = "H"
+    else:
+        weather_range = "C"
+    weather_list = df[13].tolist()
+    weather_list = [weather_list[i].split(" ") for i in range(len(weather_list))]
+    weather_bool = [False for i in range(len(weather_list))]
+    #print(weather_list)
+    #print(weather_bool)
+    for i in range(len(weather_list)):
+        if weather_range in weather_list[i]:
+            weather_bool[i] = True
+    return df[weather_bool]
 
 def time_selection(df, time_range):
     today, current_time = time_range[0], time_range[1]
