@@ -597,7 +597,7 @@ def create_item(no, data):
 def create_result_page(results):
     # show title  "推薦結果如下："
     ans_label = tk.Label(window,            # 文字標示所在視窗
-                #bg = '#EEBB08',            #  背景顏色
+                bg = '#EEBB08',            #  背景顏色
                 font = ('Arial', 12),       # 字型與大小
                 width = 60, height = 2,
                 text = "推薦結果如下：")      # 顯示文字
