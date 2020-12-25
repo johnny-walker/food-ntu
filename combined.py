@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 import tkinter.font as tkFont
 import requests, json 
+from PIL import Image, ImageTk
 from selection_method import *
 from project_main import *
 
@@ -12,8 +13,8 @@ window = tk.Tk()
 # 設定視窗標題
 window.title('吃什麼小幫手')
 
-# 設定視窗大小為 640x480，視窗（左上角）在螢幕上的座標位置為 (250, 150)
-window.geometry("420x640+250+150")
+# 設定視窗大小為 426x640，視窗（左上角）在螢幕上的座標位置為 (250, 150)
+window.geometry("426x640+250+150")
 
 # background color
 window.configure(background='white')
@@ -579,25 +580,39 @@ def get_result(all_data_list, number = 5):
         print("沒找到>_< 再試一次吧QQ")
         return "沒找到>_< 再試一次吧QQ"
 
-################# page_results ##################
-def create_item(no, data):
-    color = '#70B000' if (no%2 == 0) else '#6EBB08'
+############################################### page_results ################################################
+def create_item(no, data, imageFile):
     data_height = 10
+    '''
+    # Create a photoimage object of the image in the path
+    image = os.getcwd() + "/images/" + imageFile
+    im = Image.open(image)
+    #resized = im.resize((80, 60),Image.ANTIALIAS)
+    tkimage = ImageTk.PhotoImage(im)
+    img_label = tk.Label(window,                    # 文字標示所在視窗
+                         image = tkimage        # 顯示文字 
+                        )   
+    img_label.grid(column=0, row = no * (data_height) + 5, columnspan = 12)
+    '''
+
+    color = '#FFCC00' if (no%2 == 0) else '#99FF99'
+
     var = tk.StringVar()
     ans_label = tk.Label(window,                    # 文字標示所在視窗
                          bg = color,                #  背景顏色
                          font = ('Arial', 12),      # 字型與大小
                          width = 60, 
                          height = data_height-2,
-                         textvariable = var)        # 顯示文字
+                         textvariable = var        # 顯示文字 
+                        )        
 
     var.set(data)
-    ans_label.grid(column=0, row = no * (data_height) + 5, columnspan = 12)
+    ans_label.grid(column=1, row = no * (data_height) + 5, columnspan = 12)
 
 def create_result_page(results):
     # show title  "推薦結果如下："
     ans_label = tk.Label(window,                    # 文字標示所在視窗
-                         bg = '#AEFB28',            #  背景顏色
+                         bg = '#FFFF33',            #  背景顏色
                          font = ('Arial', 12),      # 字型與大小
                          width = 60, height = 2,
                          text = "推薦結果如下：")      # 顯示文字
@@ -605,8 +620,9 @@ def create_result_page(results):
 
 
     # show restaurants"
+    filename = "Food.jpg" # filename should query from .csv
     for i in range(0, len(results)): 
-        create_item(i, results[i])
+        create_item(i, results[i], filename)
 
 
 ################ init the first page###############
