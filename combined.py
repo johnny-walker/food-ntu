@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import ttk
 import tkinter.font as tkFont
 import requests, json 
-from PIL import Image, ImageTk
 from selection_method import *
 from project_main import *
 
@@ -199,23 +198,23 @@ def create_page_meat():
                             width = 60, height = 2,
                             text = '吃素食嗎?')  # 顯示文字
                 
-    label_page5.grid(column = 3, row = 0, columnspan = 12)
+    label_page5.grid(column = 0, row = 0, columnspan = 12)
 
 
     # set up radiobuttons
     radioValue_page5 = tk.IntVar() 
 
-    radioOne_page5 = tk.Radiobutton(window, text='素',
+    radioOne_page5 = tk.Radiobutton(window, text='素', anchor = 'w',
                                     variable = radioValue_page5,value = 1) 
-    radioTwo_page5 = tk.Radiobutton(window, text='葷',
+    radioTwo_page5 = tk.Radiobutton(window, text='葷素皆可', anchor = 'w',
                                     variable = radioValue_page5,value = 2) 
-    radioThree_page5 = tk.Radiobutton(window, text='無肉不歡, 葷素皆可',
+    radioThree_page5 = tk.Radiobutton(window, text='無肉不歡', anchor = 'w',
                                     variable = radioValue_page5,value = 3)                               
     radioValue_page5.set(1)
 
-    radioOne_page5.grid(column=3, row=3, columnspan = 12, sticky = tk.W + tk.W)
-    radioTwo_page5.grid(column=3, row=5, columnspan = 12, sticky = tk.W + tk.W)
-    radioThree_page5.grid(column=3, row=7, columnspan = 12, sticky = tk.W + tk.W)
+    radioOne_page5.grid(column=0, row=1, columnspan = 12, sticky = tk.NE + tk.SW)
+    radioTwo_page5.grid(column=0, row=2, columnspan = 12, sticky = tk.NE + tk.SW)
+    radioThree_page5.grid(column=0, row=3, columnspan = 12, sticky = tk.NE + tk.SW)
 
     # set a label showing your choice
     #labelValue_page5 = tk.Label(window, textvariable = radioValue_page5)
@@ -228,7 +227,7 @@ def create_page_meat():
                                 text = '下一題',  # 顯示文字
                                 command = next_button_function_vegan) # 按下按鈕所執行的函數
                     
-    next_btn_page5.grid(column = 3, row = 10, columnspan = 12)
+    next_btn_page5.grid(column = 0, row = 4, columnspan = 12)
 
 
 ################################# page_weather 要不要善用天氣小精靈推薦你適合的食物呢? ##################################### 
@@ -281,14 +280,14 @@ def create_page_weather():
 
     # set up radiobuttons
     radioValue_page6 = tk.IntVar() 
-    radioOne_page6 = tk.Radiobutton(window, text = '好呀',
+    radioOne_page6 = tk.Radiobutton(window, text = '好呀', anchor = 'w',
                                     variable = radioValue_page6, value = 1) 
-    radioTwo_page6 = tk.Radiobutton(window, text = '先不要',
+    radioTwo_page6 = tk.Radiobutton(window, text = '先不要', anchor = 'w',
                                     variable = radioValue_page6, value = 2) 
     radioValue_page6.set(1)                            
 
-    radioOne_page6.grid(column = 0, row = 3, columnspan = 12, sticky = tk.W + tk.W)
-    radioTwo_page6.grid(column = 0, row = 5, columnspan = 12, sticky = tk.W + tk.W)
+    radioOne_page6.grid(column = 0, row = 1, columnspan = 12, sticky = tk.NE + tk.SW)
+    radioTwo_page6.grid(column = 0, row = 2, columnspan = 12, sticky = tk.NE + tk.SW)
 
 
     # set a label showing your choice
@@ -302,7 +301,7 @@ def create_page_weather():
                                 text = '下一題',  # 顯示文字
                                 command = next_button_function_temp) # 按下按鈕所執行的函數
                     
-    next_btn_page6.grid(column = 0, row = 10, columnspan = 12)
+    next_btn_page6.grid(column = 0, row = 3, columnspan = 12)
 
 
 
@@ -343,24 +342,24 @@ def create_page_here_go():
                     text = '內用還是外帶呢?')  # 顯示文字
 
     # place                 
-    label_page4.grid(column=3, row=0, columnspan =  12)
+    label_page4.grid(column=0, row=0, columnspan =  12)
 
 
     # set up three radiobuttons
     radioValue_page4 = tk.IntVar() 
 
-    rdioOne_page4 = tk.Radiobutton( window, text='內用',
+    rdioOne_page4 = tk.Radiobutton( window, text='內用', anchor = 'w',
                                     variable=radioValue_page4, value = 1) 
-    rdioTwo_page4 = tk.Radiobutton( window, text='外帶',
+    rdioTwo_page4 = tk.Radiobutton( window, text='外帶', anchor = 'w',
                                     variable=radioValue_page4, value = 2) 
-    rdioThree_page4 = tk.Radiobutton(window, text='都可以',
+    rdioThree_page4 = tk.Radiobutton(window, text='都可以', anchor = 'w',
                                      variable=radioValue_page4, value = 3)
     radioValue_page4.set(1)
 
 
-    rdioOne_page4.grid(column=3, row=3, columnspan =  12, sticky = tk.W + tk.W)
-    rdioTwo_page4.grid(column=3, row=5, columnspan =  12, sticky = tk.W + tk.W)
-    rdioThree_page4.grid(column=3, row=7, columnspan =  12, sticky = tk.W + tk.W)
+    rdioOne_page4.grid(column=0, row=1, columnspan =  12, sticky = tk.NE + tk.SW)
+    rdioTwo_page4.grid(column=0, row=2, columnspan =  12, sticky = tk.NE + tk.SW)
+    rdioThree_page4.grid(column=0, row=3, columnspan =  12, sticky = tk.NE + tk.SW)
 
     # set a label showing your choice
     #labelValue_page4 = tk.Label(window, textvariable = radioValue_page4)
@@ -373,7 +372,7 @@ def create_page_here_go():
                                 command = next_button_function_eatin
                                 ) # 按下按鈕所執行的函數
                     
-    next_btn_page4.grid(column = 6, row=10, columnspan = 12)
+    next_btn_page4.grid(column = 0, row=4, columnspan = 12)
 
 
 ####################################### page_people 多少人要一起吃呢? #######################################################
@@ -520,7 +519,12 @@ def string_result(result, number):
         output += f"價位：{target[3]}\n"
         output += f"營業時間：{target[11]}\n"
         if all_data_list[4] != "N/A":
-            output += f"天氣：{target[13]}\n"
+            if target[13] == 'C':    
+                output += f"冷冷的天最適合了~"
+            elif target[13] == 'H':
+                output += f"大熱天最適合了~"
+            else:
+                output += f"四季皆宜~"
         results.append(output)
     return results
 
@@ -577,32 +581,23 @@ def get_result(all_data_list, number = 5):
         create_result_page(string_result(result, number))
         return string_result(result, number)
     else:
+        result = "沒找到>_< 再試一次吧QQ"
+        create_no_result_page(result)
         print("沒找到>_< 再試一次吧QQ")
         return "沒找到>_< 再試一次吧QQ"
 
 ############################################### page_results ################################################
-def create_item(no, data, imageFile):
-    data_height = 10
-    '''
-    # Create a photoimage object of the image in the path
-    image = os.getcwd() + "/images/" + imageFile
-    im = Image.open(image)
-    #resized = im.resize((80, 60),Image.ANTIALIAS)
-    tkimage = ImageTk.PhotoImage(im)
-    img_label = tk.Label(window,                    # 文字標示所在視窗
-                         image = tkimage        # 顯示文字 
-                        )   
-    img_label.grid(column=0, row = no * (data_height) + 5, columnspan = 12)
-    '''
+def create_item(no, data):
+    data_height = 9
 
-    color = '#FFCC00' if (no%2 == 0) else '#99FF99'
+    color = '#ceddf0' if (no%2 == 0) else '#d7f7df'
 
     var = tk.StringVar()
     ans_label = tk.Label(window,                    # 文字標示所在視窗
                          bg = color,                #  背景顏色
                          font = ('Arial', 12),      # 字型與大小
                          width = 60, 
-                         height = data_height-2,
+                         # height = data_height-2,
                          textvariable = var        # 顯示文字 
                         )        
 
@@ -617,13 +612,16 @@ def create_result_page(results):
                          width = 60, height = 2,
                          text = "推薦結果如下：")      # 顯示文字
     ans_label.grid(column=0, row=0, columnspan =  12)
-
-
-    # show restaurants"
-    filename = "Food.jpg" # filename should query from .csv
     for i in range(0, len(results)): 
-        create_item(i, results[i], filename)
+        create_item(i, results[i])
 
+def create_no_result_page(message):
+    ans_label = tk.Label(window,                    # 文字標示所在視窗
+                         bg = '#FFFF33',            #  背景顏色
+                         font = ('Arial', 12),      # 字型與大小
+                         width = 60, height = 2,
+                         text = message)      # 顯示文字
+    ans_label.grid(column=0, row=0, columnspan =  12)
 
 ################ init the first page###############
 create_page_place()
